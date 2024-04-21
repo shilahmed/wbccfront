@@ -1,0 +1,375 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1"></div>
+    <div class="content-detached content-right">
+      <div class="content-body">
+        <div class="content-overlay" id="content-overlay"></div>
+        <section class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="bug-list-search">
+                  <div class="bug-list-search-content">
+                    <form action="">
+                      <div class="position-relative">
+                        <input
+                          type="text"
+                          id="search-contacts"
+                          class="form-control"
+                          placeholder="Chercher Lot..."
+                          #title
+                        />
+                        <div class="form-control-position">
+                          <i
+                            class="la la-search text-size-base text-muted la-rotate-270"
+                          ></i>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-head">
+                <div class="card-header">
+                  <h4 class="card-title">Les Lots</h4>
+                  <div class="heading-elements mt-0">
+                    <button
+                      class="btn btn-primary btn-sm gap_contact"
+                      (click)="open(content)"
+                    >
+                      <i class="d-md-none d-block feather ft-plus white"></i>
+                      <span class="d-md-block d-none">Ajouter</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <ngx-datatable
+                    #table
+                    class="bootstrap row contacts-table"
+                    [rows]="listlot"
+                    [columnMode]="'force'"
+                    [headerHeight]="50"
+                    [footerHeight]="50"
+                    [rowHeight]="70"
+                    [limit]="5"
+                    [selected]="selected"
+                    [selectionType]="'checkbox'"
+                    fxFlex="auto"
+                    [perfectScrollbar]="config"
+                  >
+                    <ngx-datatable-column
+                      name="coproprietaire"
+                      [flexGrow]="1"
+                      [minWidth]="140"
+                    >
+                      <ng-template ngx-datatable-cell-template let-row="row">
+                        <div
+                          class="chat-sidebar-toggle d-block d-lg-none mr-1"
+                          id="chat-sidebar"
+                        >
+                          <i
+                            class="ficon feather ft-align-justify font-large-1 cursor-pointer"
+                            (click)="showSidebar($event)"
+                          ></i>
+                        </div>
+                        <div
+                          class="avatar chat-profile-toggle m-0 mr-1"
+                          (click)="ShowChatProfile($event, row)"
+                        >
+                          {{ row.coproprietaire.username }}
+                        </div>
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column
+                      name="immeuble"
+                      [flexGrow]="1"
+                      [minWidth]="140"
+                    >
+                      <ng-template ngx-datatable-cell-template let-row="row">
+                        {{ row.immeuble.name }}
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column
+                      name="Numero"
+                      [flexGrow]="1"
+                      [minWidth]="140"
+                    >
+                      <ng-template ngx-datatable-cell-template let-row="row">
+                        {{ row.nombre }}
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column
+                      name="Etage"
+                      [flexGrow]="1"
+                      [minWidth]="140"
+                    >
+                      <ng-template ngx-datatable-cell-template let-row="row">
+                        {{ row.etage }}
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column
+                      name="Actions"
+                      [flexGrow]="1"
+                      [minWidth]="100"
+                    >
+                      <ng-template ngx-datatable-cell-template let-row="row">
+                        <a
+                          class="primary edit mr-1 mrless"
+                          (click)="openModal(contentupdate, row)"
+                          ><i class="la la-pencil"></i>
+                        </a>
+                        <a class="danger delete mr-1 mrless"
+                          ><i
+                            class="la la-trash-o"
+                            (click)="openModal(contentdelete, row)"
+                          ></i
+                        ></a>
+                      </ng-template>
+                    </ngx-datatable-column>
+                  </ngx-datatable>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div
+      class="sidebar-detached sidebar-left"
+      id="sidebar-left"
+      fxFlex="auto"
+      [perfectScrollbar]="config"
+    >
+      <div class="sidebar">
+        <div class="bug-list-sidebar-content">
+          <div class="card-body border-top-blue-grey border-top-lighten-5">
+            <div class="list-group">
+              <a [routerLink]="" class="list-group-item list-group-item-action"
+                >Tous les Lots</a
+              >
+            </div>
+          </div>
+        </div>
+        <!--/ Predefined Views -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel22">Nouveau lot</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="d('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div>
+        <div class="form-group">
+          <label class="control-label">Description:</label>
+          <textarea
+            class="form-control"
+            name="description"
+            [(ngModel)]="lot.description"
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Surface (m²):</label>
+          <input
+            class="form-control"
+            type="number"
+            name="surface"
+            [(ngModel)]="lot.surface"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Étage:</label>
+          <input
+            class="form-control"
+            type="number"
+            name="etage"
+            [(ngModel)]="lot.etage"
+          />
+        </div>
+        <div class="form-group">
+          <label class="control-label">Numero:</label>
+          <input
+            class="form-control"
+            type="number"
+            name="nombre"
+            [(ngModel)]="lot.nombre"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Immeuble:</label>
+          <select
+            class="form-control"
+            name="immeuble"
+            [(ngModel)]="selectedImmeuble"
+          >
+            <option *ngFor="let immeuble of listimmeuble" [ngValue]="immeuble">
+              {{ immeuble.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Copropriétaire:</label>
+          <select
+            class="form-control"
+            name="coproprietaire"
+            [(ngModel)]="selectedCoproprietaire"
+          >
+            <option *ngFor="let user of users" [ngValue]="user">
+              {{ user.username }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div class="form-group position-relative has-icon-left mb-0">
+      <button type="submit" class="btn btn-primary" (click)="save()">
+        <i class="la la-paper-plane-o d-lg-none"></i>
+        <span class="d-none d-lg-block">Ajouter</span>
+      </button>
+    </div>
+  </div>
+</ng-template>
+<ng-template #contentupdate let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel22">Modification du lot</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="d('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div>
+        <div class="form-group">
+          <label class="control-label">Description:</label>
+          <textarea
+            class="form-control"
+            name="description"
+            [(ngModel)]="lot.description"
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Surface (m²):</label>
+          <input
+            class="form-control"
+            type="number"
+            name="surface"
+            [(ngModel)]="lot.surface"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Étage:</label>
+          <input
+            class="form-control"
+            type="number"
+            name="etage"
+            [(ngModel)]="lot.etage"
+          />
+        </div>
+        <div class="form-group">
+          <label class="control-label">Numero:</label>
+          <input
+            class="form-control"
+            type="number"
+            name="nombre"
+            [(ngModel)]="lot.nombre"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Immeuble:</label>
+          <select
+            class="form-control"
+            name="immeuble"
+            [(ngModel)]="selectedImmeuble"
+          >
+            <option *ngFor="let immeuble of listimmeuble" [ngValue]="immeuble">
+              {{ immeuble.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Copropriétaire:</label>
+          <select
+            class="form-control"
+            name="coproprietaire"
+            [(ngModel)]="selectedCoproprietaire"
+          >
+            <option *ngFor="let user of users" [ngValue]="user">
+              {{ user.username }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div class="form-group position-relative has-icon-left mb-0">
+      <button type="submit" class="btn btn-primary" (click)="update()">
+        <i class="la la-paper-plane-o d-lg-none"></i>
+        <span class="d-none d-lg-block">Modifier</span>
+      </button>
+    </div>
+  </div>
+</ng-template>
+<ng-template #contentdelete let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel22">Suppression du lot</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="d('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">Est ce que vous êtes sûr ?</div>
+  <div class="modal-footer">
+    <div class="form-group position-relative has-icon-left mb-0">
+      <button
+        type="submit"
+        id="add-contact-item"
+        class="btn btn-primary"
+        (click)="delete()"
+      >
+        <i class="la la-paper-plane-o d-lg-none"></i>
+        <span class="d-none d-lg-block">Supprimer</span>
+      </button>
+    </div>
+  </div>
+</ng-template>

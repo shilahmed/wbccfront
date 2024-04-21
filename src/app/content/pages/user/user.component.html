@@ -1,0 +1,455 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1"></div>
+    <div class="content-detached content-right">
+      <div class="content-body">
+        <div class="content-overlay" id="content-overlay"></div>
+        <section class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="bug-list-search">
+                  <div class="bug-list-search-content">
+                    <form action="">
+                      <div class="position-relative">
+                        <input
+                          type="text"
+                          id="search-contacts"
+                          class="form-control"
+                          placeholder="Recherche utilisateur.."
+                          #title
+                          (keyup)="findBy(title.value)"
+                        />
+                        <div class="form-control-position">
+                          <i
+                            class="la la-search text-size-base text-muted la-rotate-270"
+                          ></i>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-head">
+                <div class="card-header">
+                  <h4 class="card-title">Les utilisateurs</h4>
+                  <div class="heading-elements mt-0">
+                    <button
+                      class="btn btn-primary btn-sm gap_contact"
+                      (click)="open(content)"
+                    >
+                      <i class="d-md-none d-block feather ft-plus white"></i>
+                      <span class="d-md-block d-none">Ajouter utilisateur</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <ngx-datatable
+                    #table
+                    class="bootstrap row contacts-table"
+                    [rows]="listuser"
+                    [columnMode]="'force'"
+                    [headerHeight]="50"
+                    [footerHeight]="50"
+                    [rowHeight]="70"
+                    [limit]="5"
+                    [selected]="selected"
+                    [selectionType]="'checkbox'"
+                    fxFlex="auto"
+                    [perfectScrollbar]="config"
+                  >
+                    <ngx-datatable-column
+                      name="Username"
+                      [flexGrow]="1"
+                      [minWidth]="140"
+                    >
+                      <ng-template ngx-datatable-cell-template let-row="row">
+                        {{ row.username }}
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column
+                      name="Nom"
+                      [flexGrow]="1"
+                      [minWidth]="140"
+                    >
+                      <ng-template ngx-datatable-cell-template let-row="row">
+                        {{ row.nom }}
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column
+                      name="Prénom"
+                      [flexGrow]="1"
+                      [minWidth]="140"
+                    >
+                      <ng-template ngx-datatable-cell-template let-row="row">
+                        {{ row.prenom }}
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column
+                      name="Email"
+                      [flexGrow]="1"
+                      [minWidth]="140"
+                    >
+                      <ng-template ngx-datatable-cell-template let-row="row">
+                        {{ row.email }}
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column
+                      name="Role"
+                      [flexGrow]="1"
+                      [minWidth]="140"
+                    >
+                      <ng-template ngx-datatable-cell-template let-row="row">
+                        {{ row.role }}
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column
+                      name="Actions"
+                      [flexGrow]="1"
+                      [minWidth]="100"
+                    >
+                      <ng-template ngx-datatable-cell-template let-row="row">
+                        <a
+                          class="primary edit mr-1 mrless"
+                          (click)="openmodal(contentupdate, row)"
+                          ><i class="la la-pencil"></i>
+                        </a>
+                        <a class="danger delete mr-1 mrless"
+                          ><i
+                            class="la la-trash-o"
+                            (click)="openmodal(contentdelete, row)"
+                          ></i
+                        ></a>
+                      </ng-template>
+                    </ngx-datatable-column>
+                  </ngx-datatable>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div
+      class="sidebar-detached sidebar-left"
+      id="sidebar-left"
+      fxFlex="auto"
+      [perfectScrollbar]="config"
+    >
+      <div class="sidebar">
+        <div class="bug-list-sidebar-content">
+          <div class="card-body border-top-blue-grey border-top-lighten-5">
+            <div class="list-group">
+              <a [routerLink]="" class="list-group-item list-group-item-action"
+                >Tous les utilisateur</a
+              >
+              <a [routerLink]="" class="list-group-item list-group-item-action"
+                >Le plus recent</a
+              >
+            </div>
+          </div>
+        </div>
+        <!--/ Predefined Views -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel22">Nouvel utilisateur</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="d('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="form-horizontal" (ngSubmit)="tryRegister()">
+      <div class="form-group">
+        <label class="control-label">Username:</label>
+        <input
+          class="form-control"
+          type="text"
+          name="username"
+          [(ngModel)]="user.username"
+        />
+      </div>
+      <div class="form-group">
+        <label class="control-label">Role:</label>
+        <select
+          class="form-control"
+          [(ngModel)]="user.role"
+          name="role"
+          #role="ngModel"
+        >
+          <option value="">Select Role</option>
+          <option value="agent wbcc">Agent WBCC</option>
+          <option value="coproprietaire">Coproprietaire</option>
+          <option value="locataire">Locataire</option>
+          <option value="administrateur">Administrateur</option>
+          <option value="squatteur">Squatteur</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Nom:</label>
+        <input
+          class="form-control"
+          type="text"
+          name="nom"
+          [(ngModel)]="user.nom"
+        />
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Prenom:</label>
+        <input
+          class="form-control"
+          type="text"
+          name="prenom"
+          [(ngModel)]="user.prenom"
+        />
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">CIN:</label>
+        <input
+          class="form-control"
+          type="text"
+          name="cin"
+          [(ngModel)]="user.cin"
+        />
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Adresse:</label>
+        <input
+          class="form-control"
+          type="text"
+          name="adress"
+          [(ngModel)]="user.adress"
+        />
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Code Postal:</label>
+        <input
+          class="form-control"
+          type="number"
+          name="codepostal"
+          [(ngModel)]="user.codepostal"
+        />
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Date de Naissance:</label>
+        <input
+          class="form-control"
+          type="date"
+          name="datenaissance"
+          [(ngModel)]="user.datenaissance"
+        />
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Email:</label>
+        <input
+          class="form-control"
+          type="email"
+          name="email"
+          [(ngModel)]="user.email"
+        />
+      </div>
+      <div class="form-group">
+        <label class="control-label">Password:</label>
+        <input
+          class="form-control"
+          type="password"
+          name="password"
+          [(ngModel)]="user.password"
+        />
+      </div>
+      <button type="submit" class="btn btn-outline-info btn-block">
+        <i class="fa fa-refresh fa-spin" *ngIf="submitted"></i>
+        <i class="feather ft-user" *ngIf="!submitted"></i>
+        Ajouter
+      </button>
+    </form>
+  </div>
+  <div class="modal-footer"></div>
+</ng-template>
+<ng-template #contentupdate let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel22">
+      Modification de l'utilisateur
+    </h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="d('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label class="control-label">Username:</label>
+        <input
+          class="form-control"
+          type="text"
+          name="username"
+          [(ngModel)]="user.username"
+        />
+      </div>
+      <div class="form-group">
+        <label class="control-label">Role:</label>
+        <select
+          class="form-control"
+          [(ngModel)]="user.role"
+          name="role"
+          #role="ngModel"
+        >
+          <option value="">Select Role</option>
+          <option value="agent wbcc">Agent WBCC</option>
+          <option value="coproprietaire">Coproprietaire</option>
+          <option value="locataire">Locataire</option>
+          <option value="administrateur">Administrateur</option>
+          <option value="squatteur">Squatteur</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Nom:</label>
+        <input
+          class="form-control"
+          type="text"
+          name="nom"
+          [(ngModel)]="user.nom"
+        />
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Prenom:</label>
+        <input
+          class="form-control"
+          type="text"
+          name="prenom"
+          [(ngModel)]="user.prenom"
+        />
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">CIN:</label>
+        <input
+          class="form-control"
+          type="text"
+          name="cin"
+          [(ngModel)]="user.cin"
+        />
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Adresse:</label>
+        <input
+          class="form-control"
+          type="text"
+          name="adress"
+          [(ngModel)]="user.adress"
+        />
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Code Postal:</label>
+        <input
+          class="form-control"
+          type="number"
+          name="codepostal"
+          [(ngModel)]="user.codepostal"
+        />
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Date de Naissance:</label>
+        <input
+          class="form-control"
+          type="date"
+          name="datenaissance"
+          [(ngModel)]="user.datenaissance"
+        />
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Email:</label>
+        <input
+          class="form-control"
+          type="email"
+          name="email"
+          [(ngModel)]="user.email"
+        />
+      </div>
+      <div class="form-group">
+        <label class="control-label">Password:</label>
+        <input
+          class="form-control"
+          type="password"
+          name="password"
+          [(ngModel)]="user.password"
+        />
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div class="form-group position-relative has-icon-left mb-0">
+      <button type="submit" class="btn btn-outline-success" (click)="update()">
+        <i class="la la-paper-plane-o d-lg-none"></i>
+        <span class="d-none d-lg-block">Modifier</span>
+      </button>
+    </div>
+  </div>
+</ng-template>
+<ng-template #contentdelete let-c="close" let-d="dismiss">
+  <div class="modal-header bg-danger">
+    <h4 class="modal-title white" id="myModalLabel22">
+      <i class="la la-tree"></i> Supprission de l'utilisateur
+    </h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="d('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">Est ce que vous êtes sûr ?</div>
+  <div class="modal-footer">
+    <div class="form-group position-relative has-icon-left mb-0">
+      <button
+        type="submit"
+        id="add-contact-item"
+        class="btn btn-outline-danger"
+        (click)="delete()"
+      >
+        <i class="la la-paper-plane-o d-lg-none"></i>
+        <span class="d-none d-lg-block">Supprimer</span>
+      </button>
+    </div>
+  </div>
+</ng-template>

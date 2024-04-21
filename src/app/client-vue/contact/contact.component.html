@@ -1,0 +1,246 @@
+<div class="app-content content">
+  <!-- ======= Header ======= -->
+  <div class="header d-flex align-items-center fixed-top">
+    <div
+      class="container-fluid container-xl d-flex align-items-center justify-content-between"
+    >
+      <a href="/home" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1 class="d-flex align-items-center">
+          <img
+            class="brand-logo"
+            alt="modern admin logo"
+            src="../../../../assets/images/logo/logo.png"
+          />
+        </h1>
+      </a>
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="/home">Accueil</a></li>
+          <li><a href="/contact" class="active">Contact</a></li>
+
+          <a href="/dashboard">Tableau de bord</a>
+        </ul>
+      </nav>
+      <!-- .navbar -->
+    </div>
+  </div>
+  <!-- End Header -->
+
+  <main id="main">
+    <!-- ======= Breadcrumbs ======= -->
+    <div
+      class="breadcrumbs d-flex align-items-center"
+      style="
+        background-image: url('assets/img/contact-header.jpg');
+        height: 400px;
+      "
+    >
+      <div
+        class="container position-relative d-flex flex-column align-items-center"
+      >
+        <h2>Contact</h2>
+      </div>
+    </div>
+    <!-- End Breadcrumbs -->
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container position-relative" data-aos="fade-up">
+        <div class="row gy-4 d-flex justify-content-end">
+          <div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
+            <div class="info-item d-flex">
+              <i class="bi bi-geo-alt flex-shrink-0"></i>
+              <div>
+                <h4>Localisation:</h4>
+                <p>
+                  218, Rue de Bellevue 92700
+                  <br />
+                  Colombes
+                </p>
+              </div>
+            </div>
+            <!-- End Info Item -->
+
+            <div class="info-item d-flex">
+              <i class="bi bi-envelope flex-shrink-0"></i>
+              <div>
+                <h4>Email:</h4>
+                <p>gestion@wbcc.fr</p>
+              </div>
+            </div>
+            <!-- End Info Item -->
+
+            <div class="info-item d-flex">
+              <i class="bi bi-phone flex-shrink-0"></i>
+              <div>
+                <h4>Téléphone:</h4>
+                <p>09 800 844 84</p>
+              </div>
+            </div>
+            <!-- End Info Item -->
+          </div>
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="250">
+            <form
+              action="forms/contact.php"
+              method="post"
+              role="form"
+              class="php-email-form"
+            >
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <input
+                    type="text"
+                    name="name"
+                    class="form-control"
+                    id="name"
+                    placeholder="Votre nom et prénom"
+                    required
+                  />
+                </div>
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <input
+                    type="email"
+                    class="form-control"
+                    name="email"
+                    id="email"
+                    placeholder="Email"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="subject"
+                  id="subject"
+                  placeholder="Sujet"
+                  required
+                />
+              </div>
+              <div class="form-group mt-3">
+                <textarea
+                  class="form-control"
+                  name="message"
+                  rows="5"
+                  placeholder="Message"
+                  required
+                ></textarea>
+              </div>
+              <div class="my-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Ton message a été envoyé. merci!</div>
+              </div>
+              <div class="text-center">
+                <button type="submit">Envoyer Message</button>
+              </div>
+            </form>
+          </div>
+          <!-- End Contact Form -->
+        </div>
+      </div>
+    </section>
+    <!-- End Contact Section -->
+  </main>
+  <!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <div class="footer">
+    <div class="footer-content" style="background-color: #121e2b">
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-5 col-md-12 footer-info">
+            <img
+              loading="lazy"
+              decoding="async"
+              width="220"
+              height="114"
+              src="https://wbcc.fr/wp-content/uploads/2023/08/Fichier-114.png"
+              alt=""
+              class="wp-image-3393"
+            />
+            <p style="color: rgb(206, 202, 202)">
+              Centre de relation client spécialisé dans la
+              <strong>
+                gestion <br />
+                de sinistres immobiliers
+              </strong>
+              pour les particuliers, les <br />
+              propriétaires, les syndics de copropriétaires et les <br />
+              bailleurs sociaux : dégâts des eaux, incendies, bris <br />
+              de glaces, vandalismes, malfaçons, …
+            </p>
+            <div class="social-links d-flex mt-3">
+              <a href="https://twitter.com/WBCC_Assistance" class="twitter">
+                <i class="bi bi-twitter"></i
+              ></a>
+              <a
+                href="https://www.facebook.com/profile.php?id=100095199032279"
+                class="facebook"
+              >
+                <i class="bi bi-facebook"></i
+              ></a>
+              <a
+                href="https://www.instagram.com/sos_sinistre/"
+                class="instagram"
+              >
+                <i class="bi bi-instagram"></i
+              ></a>
+              <a
+                href="https://www.linkedin.com/company/wbcc-assistance/mycompany/"
+                class="linkedin"
+              >
+                <i class="bi bi-linkedin"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-6 footer-links">
+            <h4></h4>
+          </div>
+
+          <div class="col-lg-2 col-6 footer-links"></div>
+
+          <div
+            class="col-lg-3 col-md-12 footer-contact text-center text-md-start"
+          >
+            <h4 style="color: white">Contacter nous</h4>
+            <p style="color: rgb(206, 202, 202)">
+              218, Rue de Bellevue 92700 <br />
+
+              Colombes <br /><br />
+              <strong>Téléphone:</strong> 09 800 844 84<br />
+              <strong>Email:</strong> gestion@wbcc.fr<br />
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-legal">
+      <div class="container">
+        <div class="copyright">
+          &copy; 2023 <span>WBCC ASSISTANCE – By IT Support WBCC</span>
+          <strong>. Mentions légales </strong>
+        </div>
+        <!-- Your component HTML content here -->
+        <button
+          *ngIf="isScrolledDown"
+          (click)="scrollToTop()"
+          class="back-to-top show"
+        >
+          ↑
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- End Footer -->
+</div>

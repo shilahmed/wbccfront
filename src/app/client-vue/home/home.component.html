@@ -1,0 +1,417 @@
+<div class="app-content content">
+  <!-- ======= Header ======= -->
+  <div class="header d-flex align-items-center fixed-top">
+    <div
+      class="container-fluid container-xl d-flex align-items-center justify-content-between"
+    >
+      <a href="/home" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1 class="d-flex align-items-center">
+          <img
+            class="brand-logo"
+            alt="modern admin logo"
+            src="../../../../assets/images/logo/logo.png"
+          />
+        </h1>
+      </a>
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="/home" class="active">Accueil</a></li>
+          <li><a href="/contact">Contact</a></li>
+
+          <a href="/dashboard">Tableau de bord</a>
+        </ul>
+      </nav>
+      <!-- .navbar -->
+    </div>
+  </div>
+  <!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="hero d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div
+          style="
+            --color-secondary: #1b2f45;
+            margin-left: 750px;
+            margin-top: 90px;
+          "
+        >
+          <!-- tag.component.html -->
+          <h2 *ngIf="showTag1" data-aos="fade-up">
+            <span style="color: #ed1c24; font-size: inherit">1er</span> centre
+            <br />
+            de relation clien <br />
+            spécialisé dans la<br />
+            <span style="color: #ed1c24; font-size: inherit"
+              >gestion de sinistre <br />
+            </span>
+            immobilier IRD
+          </h2>
+
+          <h2 style="margin-top: 50px" *ngIf="!showTag1" data-aos="fade-up">
+            Nous prenons en <br />
+            charge l'integrité <br />de la gestion <br />
+            de
+            <span style="color: #ed1c24; font-size: inherit">vos sinistre</span>
+          </h2>
+
+          <!-- Aucun bouton nécessaire puisque le changement se produit automatiquement après un certain temps -->
+
+          <blockquote data-aos="fade-up" data-aos-delay="100"></blockquote>
+          <div class="d-flex" data-aos="fade-up" data-aos-delay="200"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- End Hero Section -->
+
+  <main id="main">
+    <!-- ======= Why Choose Us Section ======= -->
+    <section id="why-us" class="why-us">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2>Pourquoi nous</h2>
+        </div>
+
+        <div class="row g-0" data-aos="fade-up" data-aos-delay="200">
+          <div
+            class="col-xl-5 img-bg"
+            style="background-image: url('assets/img/123.jpg')"
+          ></div>
+          <div class="col-xl-7 slides position-relative">
+            <div class="slides-1 swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="item">
+                    <h3 class="mb-3" style="color: #ed1c24">
+                      WBCC s'engage à vos côtés <br />et vous accompage sur
+                      l'ensemble de la gestion de votre sinistre
+                    </h3>
+                    <h4 class="mb-3" style="color: #ed1c24">
+                      Avec SOS Sinistre
+                    </h4>
+                    <p>
+                      nous assurons l'interface entre le sinistre, la compagnie
+                      d'assurance et un reseau d'artisants agrées.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="swiper-slide">
+                  <div class="item">
+                    <h3 class="mb-3" style="color: #ed1c24">Notre MISSION</h3>
+                    <h4 class="mb-3"></h4>
+                    <p>
+                      Nous mettons à votre service notre équipe de gestionnaires
+                      de sinistres expérimentés pour vous garantir une Gestion
+                      de votre sinistre «Clé en main» de la déclaration à la
+                      réparation
+                    </p>
+                  </div>
+                </div>
+                <!-- End slide item -->
+
+                <div class="swiper-slide">
+                  <div class="item">
+                    <h3 class="mb-3" style="color: #ed1c24">Notre VISION</h3>
+                    <h4 class="mb-3"></h4>
+                    <p>
+                      Grâce à des solutions innovantes en matière de
+                      relation-client et à une prise en charge de la gestion du
+                      sinistre de A à Z, nous proposons des solutions sur-mesure
+                      qui privilégient l’écoute et la réactivité.
+                    </p>
+                  </div>
+                </div>
+                <!-- End slide item -->
+
+                <div class="swiper-slide">
+                  <div class="item">
+                    <h3 class="mb-3" style="color: #ed1c24">Notre ADN</h3>
+                    <h4 class="mb-3"></h4>
+                    <p>
+                      Un centre de relation client exclusivement spécialisé en
+                      gestion des sinistres dommages aux biens immobiliers
+                    </p>
+                  </div>
+                </div>
+                <!-- End slide item -->
+
+                <!-- End slide item -->
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Why Choose Us Section -->
+
+    <section class="custom-section">
+      <div class="custom-item">
+        <img
+          loading="lazy"
+          decoding="async"
+          width="145"
+          height="100"
+          src="https://wbcc.fr/wp-content/uploads/2023/10/wbccFichier-2.png"
+          class="attachment-full size-full"
+          alt=""
+        />
+        <h4 class="edgtf-iwt-title">
+          <span class="edgtf-iwt-title-text">Dégat des Eaux</span>
+        </h4>
+      </div>
+
+      <div class="custom-item">
+        <img
+          loading="lazy"
+          decoding="async"
+          width="122"
+          height="155"
+          src="https://wbcc.fr/wp-content/uploads/2023/10/wbccFichier-2-3.png"
+          class="attachment-full size-full"
+          alt=""
+        />
+        <h4 class="edgtf-iwt-title">
+          <span class="edgtf-iwt-title-text">Vol ou perte de clés</span>
+        </h4>
+      </div>
+
+      <div class="custom-item">
+        <img
+          loading="lazy"
+          decoding="async"
+          width="155"
+          height="155"
+          src="https://wbcc.fr/wp-content/uploads/2023/10/wbccFichier-2-2.png"
+          class="attachment-full size-full"
+          alt=""
+        />
+        <h4 class="edgtf-iwt-title">
+          <span class="edgtf-iwt-title-text">Bris de glace</span>
+        </h4>
+      </div>
+
+      <div class="custom-item">
+        <img
+          loading="lazy"
+          decoding="async"
+          width="92"
+          height="100"
+          src="https://wbcc.fr/wp-content/uploads/2023/10/wbccFichier-1.png"
+          class="attachment-full size-full"
+          alt=""
+        />
+        <h4 class="edgtf-iwt-title">
+          <span class="edgtf-iwt-title-text">Incendie</span>
+        </h4>
+      </div>
+
+      <div class="custom-item">
+        <img
+          loading="lazy"
+          decoding="async"
+          width="114"
+          height="100"
+          src="https://wbcc.fr/wp-content/uploads/2023/10/wbccFichier-1-1.png"
+          class="attachment-full size-full"
+          alt=""
+        />
+        <h4 class="edgtf-iwt-title">
+          <span class="edgtf-iwt-title-text">Dommage électrique</span>
+        </h4>
+      </div>
+    </section>
+
+    <div class="centered-paragraph">
+      <p>
+        WBCC ASSISTANCE intervient pour votre compte auprès de votre compagnie
+        d’assurance <br />
+        et devient votre interlocuteur principal dans la gestion de votre
+        sinistre.
+      </p>
+    </div>
+
+    <div class="centered-paragraph">
+      <p style="color: #ed1c24">
+        WBCC ASSISTANCE prend en charge la gestion de votre sinistre de A à Z
+        <br />
+        de la déclaration à la réparation.
+      </p>
+    </div>
+
+    <!-- ======= Our Services Section ======= -->
+    <section id="services-list" class="services-list">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2>NOS ATOUTS</h2>
+        </div>
+
+        <div class="row gy-5">
+          <div
+            class="col-lg-4 col-md-6 service-item d-flex"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="icon flex-shrink-0">
+              <i class="bi bi-card-checklist" style="color: #15a04a"></i>
+            </div>
+            <div>
+              <h4 class="title">
+                <a href="#" class="stretched-link"
+                  >DISPONIBILITÉ, RÉACTIVITÉ & EXPERTISE</a
+                >
+              </h4>
+            </div>
+          </div>
+          <!-- End Service Item -->
+
+          <div
+            class="col-lg-4 col-md-6 service-item d-flex"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            <div class="icon flex-shrink-0">
+              <i class="bi bi-coin" style="color: #f51313"></i>
+            </div>
+            <div>
+              <h4 class="title">
+                <a href="#" class="stretched-link">0€ COÛT DE GESTION</a>
+              </h4>
+            </div>
+          </div>
+          <!-- End Service Item -->
+
+          <div
+            class="col-lg-4 col-md-6 service-item d-flex"
+            data-aos="fade-up"
+            data-aos-delay="600"
+          >
+            <div class="icon flex-shrink-0">
+              <i class="bi bi-check2-all" style="color: #1335f5"></i>
+            </div>
+            <div>
+              <h4 class="title">
+                <a href="#" class="stretched-link"
+                  >UN RÉSEAU D’ARTISANS AGRÉÉS</a
+                >
+              </h4>
+            </div>
+          </div>
+          <!-- End Service Item -->
+        </div>
+      </div>
+    </section>
+    <!-- End Our Services Section -->
+
+    <!-- ======= Call To Action Section ======= -->
+    <!-- End Call To Action Section -->
+  </main>
+  <!-- End #main -->
+
+  <!-- End Footer -->
+
+  <!-- ======= Footer ======= -->
+  <div class="footer">
+    <div class="footer-content" style="background-color: #121e2b">
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-5 col-md-12 footer-info">
+            <img
+              loading="lazy"
+              decoding="async"
+              width="220"
+              height="114"
+              src="https://wbcc.fr/wp-content/uploads/2023/08/Fichier-114.png"
+              alt=""
+              class="wp-image-3393"
+            />
+            <p style="color: rgb(206, 202, 202)">
+              Centre de relation client spécialisé dans la
+              <strong>
+                gestion <br />
+                de sinistres immobiliers
+              </strong>
+              pour les particuliers, les <br />
+              propriétaires, les syndics de copropriétaires et les <br />
+              bailleurs sociaux : dégâts des eaux, incendies, bris <br />
+              de glaces, vandalismes, malfaçons, …
+            </p>
+            <div class="social-links d-flex mt-3">
+              <a href="https://twitter.com/WBCC_Assistance" class="twitter">
+                <i class="bi bi-twitter"></i
+              ></a>
+              <a
+                href="https://www.facebook.com/profile.php?id=100095199032279"
+                class="facebook"
+              >
+                <i class="bi bi-facebook"></i
+              ></a>
+              <a
+                href="https://www.instagram.com/sos_sinistre/"
+                class="instagram"
+              >
+                <i class="bi bi-instagram"></i
+              ></a>
+              <a
+                href="https://www.linkedin.com/company/wbcc-assistance/mycompany/"
+                class="linkedin"
+              >
+                <i class="bi bi-linkedin"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-6 footer-links">
+            <h4></h4>
+          </div>
+
+          <div class="col-lg-2 col-6 footer-links"></div>
+
+          <div
+            class="col-lg-3 col-md-12 footer-contact text-center text-md-start"
+          >
+            <h4 style="color: white">Contacter nous</h4>
+            <p style="color: rgb(206, 202, 202)">
+              218, Rue de Bellevue 92700 <br />
+
+              Colombes <br /><br />
+              <strong>Téléphone:</strong> 09 800 844 84<br />
+              <strong>Email:</strong> gestion@wbcc.fr<br />
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-legal">
+      <div class="container">
+        <div class="copyright">
+          &copy; 2023 <span>WBCC ASSISTANCE – By IT Support WBCC</span>
+          <strong>. Mentions légales </strong>
+        </div>
+        <!-- Your component HTML content here -->
+        <button
+          *ngIf="isScrolledDown"
+          (click)="scrollToTop()"
+          class="back-to-top show"
+        >
+          ↑
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- End Footer -->
+  <!-- ////////////////////////////////////////////////////////////////////////////-->
+</div>

@@ -1,0 +1,435 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1"></div>
+    <div class="content-detached content-right">
+      <div class="content-body">
+        <div class="content-overlay" id="content-overlay"></div>
+        <section class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="bug-list-search">
+                  <div class="bug-list-search-content">
+                    <form action="">
+                      <div class="position-relative">
+                        <input
+                          type="text"
+                          id="search-contacts"
+                          class="form-control"
+                          placeholder="Chercher Remis..."
+                          #title
+                        />
+                        <div class="form-control-position">
+                          <i
+                            class="la la-search text-size-base text-muted la-rotate-270"
+                          ></i>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-head">
+                <div class="card-header">
+                  <h4 class="card-title">Les Remis de clé</h4>
+                  <div class="heading-elements mt-0">
+                    <button
+                      class="btn btn-primary btn-sm gap_contact"
+                      (click)="openmodal(content)"
+                    >
+                      <i class="d-md-none d-block feather ft-plus white"></i>
+                      <span class="d-md-block d-none">Ajouter</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <ngx-datatable
+                    #table
+                    class="bootstrap row contacts-table"
+                    [rows]="listremisedecle"
+                    [columnMode]="'force'"
+                    [headerHeight]="50"
+                    [footerHeight]="50"
+                    [rowHeight]="70"
+                    [limit]="5"
+                    [selected]="selected"
+                    [selectionType]="'checkbox'"
+                    fxFlex="auto"
+                    [perfectScrollbar]="config"
+                  >
+                    <ngx-datatable-column
+                      name="Donneur"
+                      [flexGrow]="1"
+                      [minWidth]="140"
+                    >
+                      <ng-template ngx-datatable-cell-template let-row="row">
+                        <div
+                          class="chat-sidebar-toggle d-block d-lg-none mr-1"
+                          id="chat-sidebar"
+                        >
+                          <i
+                            class="ficon feather ft-align-justify font-large-1 cursor-pointer"
+                            (click)="showSidebar($event)"
+                          ></i>
+                        </div>
+                        <div
+                          class="avatar chat-profile-toggle m-0 mr-1"
+                          (click)="ShowChatProfile($event, row)"
+                        >
+                          {{ row.donneur.username }}
+                        </div>
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column
+                      name="Receveur"
+                      [flexGrow]="1"
+                      [minWidth]="140"
+                    >
+                      <ng-template ngx-datatable-cell-template let-row="row">
+                        {{ row.receveur.username }}
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column
+                      name="Lot"
+                      [flexGrow]="1"
+                      [minWidth]="140"
+                    >
+                      <ng-template ngx-datatable-cell-template let-row="row">
+                        {{ row.lot.nombre }}
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column
+                      name="Signature"
+                      [flexGrow]="1"
+                      [minWidth]="140"
+                    >
+                      <ng-template ngx-datatable-cell-template let-row="row">
+                        <a class="success edit mr-1 mrless"
+                          ><i
+                            class="la la-cloud-download"
+                            (click)="showFilesignature(row)"
+                          ></i
+                        ></a>
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column
+                      name="Media"
+                      [flexGrow]="1"
+                      [minWidth]="140"
+                    >
+                      <ng-template ngx-datatable-cell-template let-row="row">
+                        <a class="success edit mr-1 mrless"
+                          ><i
+                            class="la la-cloud-download"
+                            (click)="showFilephotoOuVideo(row)"
+                          ></i
+                        ></a>
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column
+                      name="Date de Remise"
+                      [flexGrow]="1"
+                      [minWidth]="140"
+                    >
+                      <ng-template ngx-datatable-cell-template let-row="row">
+                        {{ row.dateRemise | date }}
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column
+                      name="Actions"
+                      [flexGrow]="1"
+                      [minWidth]="100"
+                    >
+                      <ng-template ngx-datatable-cell-template let-row="row">
+                        <a
+                          class="primary edit mr-1 mrless"
+                          (click)="openModal(contentupdate, row)"
+                          ><i class="la la-edit"></i>
+                        </a>
+                        <a class="danger delete mr-1 mrless"
+                          ><i
+                            class="la la-trash-o"
+                            (click)="openModal(contentdelete, row)"
+                          ></i
+                        ></a>
+                      </ng-template>
+                    </ngx-datatable-column>
+                  </ngx-datatable>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div
+      class="sidebar-detached sidebar-left"
+      id="sidebar-left"
+      fxFlex="auto"
+      [perfectScrollbar]="config"
+    >
+      <div class="sidebar">
+        <div class="bug-list-sidebar-content">
+          <div class="card-body border-top-blue-grey border-top-lighten-5">
+            <div class="list-group">
+              <a [routerLink]="" class="list-group-item list-group-item-action"
+                >Tous les Remis</a
+              >
+            </div>
+          </div>
+        </div>
+        <!--/ Predefined Views -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel22">Nouvelle remis</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="d('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #ngform>
+      <div>
+        <div class="form-group">
+          <label class="control-label">Donneur:</label>
+          <select class="form-control" name="donneur" [(ngModel)]="donneur">
+            <option *ngFor="let user of users" [value]="user.id">
+              {{ user.username }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Receveur:</label>
+          <select class="form-control" name="receveur" [(ngModel)]="receveur">
+            <option *ngFor="let user of users" [value]="user.id">
+              {{ user.username }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Lot:</label>
+          <select class="form-control" name="lot" [(ngModel)]="lot">
+            <option *ngFor="let lot of listlot" [value]="lot.id">
+              NUM {{ lot.nombre }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Date de remise:</label>
+          <input
+            class="form-control"
+            type="date"
+            name="dateRemise"
+            [(ngModel)]="remisedecle.dateRemise"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Commentaire:</label>
+          <textarea
+            class="form-control"
+            name="commentaire"
+            [(ngModel)]="remisedecle.commentaire"
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Signature:</label>
+          <input
+            class="form-control"
+            type="file"
+            (change)="selectFile($event)"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Photo ou Vidéo:</label>
+          <input
+            class="form-control"
+            type="file"
+            (change)="selectFile2($event)"
+          />
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div class="form-group position-relative has-icon-left mb-0">
+      <button type="submit" class="btn btn-primary" (click)="newsave()">
+        <i class="la la-paper-plane-o d-lg-none"></i>
+        <span class="d-none d-lg-block">Ajouter</span>
+      </button>
+    </div>
+  </div>
+</ng-template>
+<ng-template #contentupdate let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel22">Modification du remis</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="d('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #ngform>
+      <div>
+        <div class="form-group">
+          <label class="control-label">Donneur:</label>
+          <select class="form-control" name="donneur" [(ngModel)]="donneur">
+            <option *ngFor="let user of users" [value]="user.id">
+              {{ user.username }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Receveur:</label>
+          <select class="form-control" name="receveur" [(ngModel)]="receveur">
+            <option *ngFor="let user of users" [value]="user.id">
+              {{ user.username }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Lot:</label>
+          <select class="form-control" name="lot" [(ngModel)]="lot">
+            <option *ngFor="let lot of listlot" [value]="lot.id">
+              NUM {{ lot.nombre }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Date de remise:</label>
+          <input
+            class="form-control"
+            type="date"
+            name="dateRemise"
+            [(ngModel)]="remisedecle.dateRemise"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Commentaire:</label>
+          <textarea
+            class="form-control"
+            name="commentaire"
+            [(ngModel)]="remisedecle.commentaire"
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Signature:</label>
+          <input
+            class="form-control"
+            type="file"
+            (change)="selectFile($event)"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Photo ou Vidéo:</label>
+          <input
+            class="form-control"
+            type="file"
+            (change)="selectFile2($event)"
+          />
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div class="form-group position-relative has-icon-left mb-0">
+      <button type="submit" class="btn btn-primary" (click)="update()">
+        <i class="la la-paper-plane-o d-lg-none"></i>
+        <span class="d-none d-lg-block">Modifier</span>
+      </button>
+    </div>
+  </div>
+</ng-template>
+<ng-template #contentdelete let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel22">Suppression du Remis</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="d('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">Est ce que vous êtes sûr ?</div>
+  <div class="modal-footer">
+    <div class="form-group position-relative has-icon-left mb-0">
+      <button
+        type="submit"
+        id="add-contact-item"
+        class="btn btn-primary"
+        (click)="delete()"
+      >
+        <i class="la la-paper-plane-o d-lg-none"></i>
+        <span class="d-none d-lg-block">Supprimer</span>
+      </button>
+    </div>
+  </div>
+</ng-template>
+<ng-template #contentview let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel22">Nouvelle remis</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="d('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <!-- Add image or video tag here -->
+    <div *ngIf="imageUrl">
+      <img [src]="imageUrl" class="img-fluid" alt="Uploaded Image" />
+    </div>
+    <div *ngIf="videoUrl">
+      <video controls class="img-fluid">
+        <source [src]="videoUrl" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <form #ngform>
+      <!-- Your form inputs -->
+    </form>
+  </div>
+  <div class="modal-footer">
+    <!-- Your modal footer -->
+  </div>
+</ng-template>

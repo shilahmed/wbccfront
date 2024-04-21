@@ -1,0 +1,277 @@
+<div class="app-content content">
+  <!-- ======= Header ======= -->
+  <div class="header d-flex align-items-center fixed-top">
+    <div
+      class="container-fluid container-xl d-flex align-items-center justify-content-between"
+    >
+      <a href="index.html" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1 class="d-flex align-items-center">
+          <img
+            class="brand-logo"
+            alt="modern admin logo"
+            src="../../../../assets/images/logo/logo.png"
+          />
+        </h1>
+      </a>
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="/home">Accueil</a></li>
+          <li><a href="/about" class="active">A Propos</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li *ngIf="isLoggedIn">
+            <a href="/plans">Tableau de bord</a>
+          </li>
+          <li *ngIf="isLoggedIn">
+            <a (click)="logout()">Se Déconnecter</a>
+          </li>
+          <li *ngIf="loggedOut">
+            <a href="/login">Se connecter</a>
+          </li>
+          <li *ngIf="loggedOut">
+            <a href="/register">S'inscrire</a>
+          </li>
+        </ul>
+      </nav>
+      <!-- .navbar -->
+    </div>
+  </div>
+  <!-- End Header -->
+
+  <main id="main">
+    <!-- ======= Breadcrumbs ======= -->
+    <div
+      class="breadcrumbs d-flex align-items-center"
+      style="background-image: url('assets/img/about-header.jpg')"
+    >
+      <div
+        class="container position-relative d-flex flex-column align-items-center"
+      >
+        <h2>Qui sommes nous</h2>
+      </div>
+    </div>
+    <!-- End Breadcrumbs -->
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+        <div class="row gy-4" data-aos="fade-up">
+          <div class="col-lg-4">
+            <img src="assets/img/telnet.jpg" class="img-fluid" alt="" />
+          </div>
+          <div class="col-lg-8">
+            <div class="content ps-lg-5">
+              <p>
+                TELNET Holding, est un groupe Tunisien, fondé en 1994,
+                spécialisé dans l'ingénierie logicielle et hardware,
+                l'intégration réseaux et Télécom et dans les études mécaniques.
+                Avec plus de 27 ans d'existence et 500 collaborateurs, TELNET a
+                su se forger différentes expertises, à savoir: Software
+                Embarqué, Internet Of Things, Intelligence artificielle,
+                Entreprise Application, Cloud Computing, Design Electronique et
+                Conception Mécanique. TELNET opère dans différents secteurs
+                d'activités tels que: Télécom & Média, E-payment, Industrie,
+                Réseau Opérateurs & Entreprises et Aérospatial. Grâce à la
+                réalisation et la mise en orbite réussies de son premier
+                satellite "ChallengeOne", Telnet a franchi le premier pas vers
+                le monde de l'aérospatial. Elle compte désormais continuer sur
+                cette lancée avec de nouveaux projets tout aussi innovants et
+                audacieux.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End About Section -->
+
+    <!-- ======= Why Choose Us Section ======= -->
+    <section id="why-us" class="why-us">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2>Pourquoi nous</h2>
+        </div>
+
+        <div class="row g-0" data-aos="fade-up" data-aos-delay="200">
+          <div
+            class="col-xl-5 img-bg"
+            style="
+              background-image: url('assets/img/Annonce-lancement-ChallengeOne.png');
+            "
+          ></div>
+          <div class="col-xl-7 slides position-relative">
+            <div class="slides-1 swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="item">
+                    <h3 class="mb-3">ChallengeOne</h3>
+                    <h4 class="mb-3">
+                      CHallengeOne est le projet ambitieux pour la conception et
+                      le développement du premier satellite Tunisien et qui sera
+                      appliqué au nouveau domaine du « Space for IoT ».
+                    </h4>
+                    <p>
+                      Le satellite ChallengeOne joue le rôle d’une passerelle
+                      LoRa placée en orbite dans l’espace, et de ce fait sera
+                      capable de recevoir les données qui lui sont destinées et
+                      émises par les terminaux au sol. Il est à préciser que
+                      LoRa est une technologie permettant à un objet d’échanger
+                      des données de faible taille et à bas débit, ce qui permet
+                      de réduire sa consommation énergétique et lui confer ainsi
+                      une autonomie pouvant aller à 15 ans.
+                    </p>
+                  </div>
+                </div>
+                <!-- End slide item -->
+
+                <div class="swiper-slide">
+                  <div class="item">
+                    <h3 class="mb-3">Agriculture</h3>
+                    <h4 class="mb-3">
+                      Autonomiser les entreprises agricoles. Données
+                      géospatiales haute fréquence.
+                    </h4>
+                    <p>
+                      Donner aux entreprises agricoles les moyens de disposer de
+                      données fréquentes et complètes pour aider les producteurs
+                      à prendre des décisions plus éclairées, à améliorer les
+                      rendements et à réduire les intrants.
+                    </p>
+                  </div>
+                </div>
+                <!-- End slide item -->
+
+                <div class="swiper-slide">
+                  <div class="item">
+                    <h3 class="mb-3">Énergie et infrastructure</h3>
+                    <h4 class="mb-3">Surveillez vos actifs.</h4>
+                    <p>
+                      Découvrez la croissance des infrastructures routières au
+                      rythme du changement, Supervision et intelligence de vos
+                      projets avec des images et des analyses globales à haute
+                      cadence.
+                    </p>
+                  </div>
+                </div>
+                <!-- End slide item -->
+
+                <div class="swiper-slide">
+                  <div class="item">
+                    <h3 class="mb-3">Tracking</h3>
+                    <h4 class="mb-3">Géo-localisation précise</h4>
+                    <p>
+                      Localiser et tracer des véhicules, des objets de valeurs,
+                      des animaux, Révolutionner l'observation de la Terre pour
+                      conduire la transformation dans les secteurs privé et
+                      public .
+                    </p>
+                  </div>
+                </div>
+                <!-- End slide item -->
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Why Choose Us Section -->
+
+    <!-- ======= Call To Action Section ======= -->
+    <section id="call-to-action" class="call-to-action">
+      <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+          <div class="col-lg-6 text-center">
+            <h3>Commencer maintenant</h3>
+            <p>
+              Notre plateforme donne l'occasion aux utilisateurs de faire une
+              petite démo pour comprendre nos services.
+            </p>
+            <a class="cta-btn" href="#">S'inscrire</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Call To Action Section -->
+  </main>
+  <!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <div class="footer">
+    <div class="footer-content">
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-5 col-md-12 footer-info">
+            <a href="/home" class="logo d-flex align-items-center">
+              <img
+                class="brand-logo"
+                alt="modern admin logo"
+                src="../../../../assets/images/logo/logo-bleu.png"
+              />
+            </a>
+            <p>
+              Telnet a franchi le premier pas vers le monde de l'aérospatial
+              grâce à la réalisation et la mise en orbite réussies de son
+              premier satellite "ChallengeOne". Elle compte désormais continuer
+              sur cette lancée avec de nouveaux projets tout aussi innovants et
+              audacieux.
+            </p>
+            <div class="social-links d-flex mt-3">
+              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-2 col-6 footer-links"></div>
+          <div class="col-lg-2 col-6 footer-links">
+            <h4></h4>
+            <ul>
+              <li><i class="bi bi-dash"></i> <a href="/home">Accueil</a></li>
+              <li><i class="bi bi-dash"></i> <a href="/about">A propos</a></li>
+              <li><i class="bi bi-dash"></i> <a href="/contact">Contact</a></li>
+              <li>
+                <i class="bi bi-dash"></i>
+                <a href="/termCondition">Terms of service</a>
+              </li>
+              <li>
+                <i class="bi bi-dash"></i>
+                <a href="/privacypolicy">Privacy policy</a>
+              </li>
+            </ul>
+          </div>
+
+          <div
+            class="col-lg-3 col-md-12 footer-contact text-center text-md-start"
+          >
+            <h4>Contacter nous</h4>
+            <p>
+              TELNET TECHNOCENTRE, <br />
+              Rue du Lac Léman 1053<br />
+              TUNISIE <br /><br />
+              <strong>Téléphone:</strong> +216 71 860 233<br />
+              <strong>Email:</strong> contact@challengeone.space<br />
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-legal">
+      <div class="container">
+        <div class="copyright">
+          &copy; Copyright <strong><span>Telnet</span></strong
+          >. All Rights Reserved
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Footer -->
+</div>
